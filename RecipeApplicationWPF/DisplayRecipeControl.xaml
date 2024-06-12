@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="RecipeApplicationWPF.DisplayRecipeControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="Auto" Width="Auto">
+    <Grid>
+        <!-- Main container for the recipe display, centered and with a margin -->
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
+
+            <!-- Display Recipe Name -->
+            <TextBlock Name="RecipeNameTextBlock" 
+                       Text="Recipe Name" 
+                       FontSize="36" 
+                       FontWeight="Bold" 
+                       HorizontalAlignment="Center" 
+                       Margin="0,0,0,20" 
+                       Foreground="#2F4F4F"
+                       TextWrapping="Wrap"/>
+
+            <!-- Ingredients Section Title -->
+            <TextBlock Text="Ingredients" 
+                       FontSize="24" 
+                       FontWeight="Bold" 
+                       Margin="10" 
+                       Foreground="#2F4F4F"
+                       TextWrapping="Wrap"/>
+
+            <!-- List of Ingredients -->
+            <ItemsControl Name="IngredientsItemsControl" Margin="10">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!-- Each ingredient displayed as a TextBlock -->
+                        <TextBlock Text="{Binding}" 
+                                   Margin="5" 
+                                   FontSize="18" 
+                                   Foreground="#2F4F4F"
+                                   TextWrapping="Wrap"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- Steps Section Title -->
+            <TextBlock Text="Steps" 
+                       FontSize="24" 
+                       FontWeight="Bold" 
+                       Margin="10" 
+                       Foreground="#2F4F4F"
+                       TextWrapping="Wrap"/>
+
+            <!-- List of Steps -->
+            <ItemsControl Name="StepsItemsControl" Margin="10">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <!-- Checkbox for step completion status -->
+                            <CheckBox IsChecked="{Binding IsCompleted}" 
+                                      VerticalAlignment="Center"/>
+                            <!-- Step description displayed as a TextBlock -->
+                            <TextBlock Text="{Binding Description}" 
+                                       Margin="5" 
+                                       FontSize="18" 
+                                       Foreground="#2F4F4F"
+                                       TextWrapping="Wrap"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- Total Calories Display -->
+            <TextBlock x:Name="TotalCaloriesTextBlock" 
+                       Text="Total Calories: 0" 
+                       FontWeight="Bold" 
+                       Margin="10" 
+                       FontSize="24" 
+                       Foreground="#2F4F4F"
+                       TextWrapping="Wrap"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

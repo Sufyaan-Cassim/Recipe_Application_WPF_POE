@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="RecipeApplicationWPF.EnterRecipeControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="Auto" Width="Auto">
+    <!-- Resource definitions -->
+    <UserControl.Resources>
+        <!-- Define colors -->
+        <Color x:Key="PrimaryColor">#FF6347</Color>
+        <Color x:Key="SecondaryColor">#FFD700</Color>
+        <Color x:Key="AccentColor">#4682B4</Color>
+        <Color x:Key="TextColor">#2F4F4F</Color>
+
+        <!-- Define brushes using colors -->
+        <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}"/>
+        <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource SecondaryColor}"/>
+        <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}"/>
+        <SolidColorBrush x:Key="TextBrush" Color="{StaticResource TextColor}"/>
+
+        <!-- TextBlock style -->
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource TextBrush}"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="5,0"/>
+        </Style>
+
+        <!-- Button style -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            BorderThickness="{TemplateBinding BorderThickness}" 
+                            CornerRadius="5">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- Change button background color on mouse over -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{StaticResource AccentBrush}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <!-- Recipe Details Panel -->
+        <StackPanel Name="RecipeDetailsPanel" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20">
+            <!-- Recipe Details Title -->
+            <TextBlock Text="Enter Recipe Details" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+            <!-- Recipe Name Input -->
+            <TextBlock Text="Recipe Name"/>
+            <TextBox Name="RecipeNameTextBox" Width="300" TextWrapping="Wrap" Margin="5"/>
+            <!-- Number of Ingredients Input -->
+            <TextBlock Text="Number of Ingredients" Margin="5,10,0,0"/>
+            <TextBox Name="NumIngredientsTextBox" Width="300" TextWrapping="Wrap" Margin="5"/>
+            <!-- Number of Steps Input -->
+            <TextBlock Text="Number of Steps" Margin="5,10,0,0"/>
+            <TextBox Name="NumStepsTextBox" Width="300" TextWrapping="Wrap" Margin="5"/>
+            <!-- Buttons to add ingredients and steps, and to save the recipe -->
+            <Button Content="Add Ingredients" Click="ShowIngredientDetails_Click" Margin="5"/>
+            <Button Content="Add Steps" Click="ShowStepDetails_Click" Margin="5"/>
+            <Button Content="Save Recipe" Click="SaveRecipeButton_Click" Margin="5"/>
+        </StackPanel>
+
+        <!-- Ingredient Details Panel -->
+        <StackPanel Name="IngredientDetailsPanel" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Visibility="Collapsed">
+            <!-- Ingredient Details Title -->
+            <TextBlock Name="IngredientDetailsTitle" Text="Ingredient Details" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+            <!-- StackPanel to hold input fields for ingredient details -->
+            <StackPanel Name="IngredientsInputStackPanel" Margin="5"/>
+            <!-- Buttons to navigate and save ingredient details, and to go back to recipe details -->
+            <Button Name="NextIngredientButton" Content="Next Ingredient" Click="AddIngredientsButton_Click" Margin="5"/>
+            <Button Name="SaveIngredientsButton" Content="Save Ingredients" Click="SaveIngredientsButton_Click" Margin="5" Visibility="Collapsed"/>
+            <Button Name="BackToRecipeDetailsButton" Content="Back to Recipe Details" Click="BackToRecipeDetails_Click" Margin="5" Visibility="Collapsed"/>
+        </StackPanel>
+
+        <!-- Step Details Panel -->
+        <StackPanel Name="StepDetailsPanel" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="20" Visibility="Collapsed">
+            <!-- Step Details Title -->
+            <TextBlock Name="StepDetailsTitle" Text="Step Details" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+            <!-- StackPanel to hold input fields for step details -->
+            <StackPanel Name="StepsInputStackPanel" Margin="5"/>
+            <!-- Buttons to navigate and save step details, and to go back to recipe details -->
+            <Button Name="NextStepButton" Content="Next Step" Click="AddStepsButton_Click" Margin="5"/>
+            <Button Name="SaveStepsButton" Content="Save Steps" Click="SaveStepsButton_Click" Margin="5" Visibility="Collapsed"/>
+            <Button Name="BackToRecipeDetailsFromStepsButton" Content="Back to Recipe Details" Click="BackToRecipeDetails_Click" Margin="5" Visibility="Collapsed"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
